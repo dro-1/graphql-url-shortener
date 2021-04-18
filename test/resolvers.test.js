@@ -21,11 +21,11 @@ describe("Resolvers", () => {
       });
   });
 
-  it("should throw an error when url does not include http or https ", () => {
+  it("should throw an error when url is not valid", () => {
     return expect(
       createLink({ url: "google.com" })
     ).to.eventually.be.rejectedWith(
-      "The url needs to have either http:// or https://"
+      "You must enter a valid url with either http or https"
     );
   });
 
