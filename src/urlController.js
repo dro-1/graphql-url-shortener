@@ -1,3 +1,5 @@
+const URL = require("./models");
+
 const getLink = async (req, res) => {
   const urlHash = req.params.hash;
   if (urlHash.length !== 6 || !urlHash) {
