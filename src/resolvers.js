@@ -38,6 +38,9 @@ const createLink = async ({ url }) => {
   };
 };
 
+const hello = () => "Hiiiii";
+
 module.exports = {
   createLink,
+  hello,
 };
