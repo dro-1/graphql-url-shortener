@@ -1,4 +1,4 @@
-const { createLink } = require("../src/resolvers");
+const { shortenURL } = require("../src/resolvers");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const chai = require("chai");
@@ -23,17 +23,17 @@ describe("Resolvers", () => {
 
   it("should throw an error when url is not valid", () => {
     return expect(
-      createLink({ url: "google.com" })
+      shortenURL({ url: "google.com" })
     ).to.eventually.be.rejectedWith(
       "You must enter a valid url with either http or https"
     );
   });
 
-  it("should successfully create a short Url", () => {
+  it("should successfully create a short Url that includes the host", () => {
     return expect(
-      createLink({
+      shortenURL({
         url: "https://www.google.com",
       })
-    ).to.eventually.have.property("shortUrl");
+    ).to.eventually.include(process.env.HOST);
   });
 });
