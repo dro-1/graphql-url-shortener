@@ -4,10 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/app.js",
-    "devstart": "nodemon src/app.js",
-    "test": "mocha --watchAll",
-    "testDetect": "jest --detectOpenHandles"
+    "start": "node app.js",
+    "devstart": "nodemon app.js",
+    "test": "mocha --timeout 10000"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -19,6 +18,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
     "mocha": "^8.3.2"
   }
 }

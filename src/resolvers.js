@@ -6,8 +6,19 @@ const createLink = async ({ url }) => {
     const err = new Error("The url needs to have either http:// or https://");
     throw err;
   }
-  const name = `${new Date().toDateString()}`;
-  const hash = crypto.createHash("md5").update(name).digest("hex").slice(0, 6);
+
+  let name = `${new Date()}`;
+  let hash = crypto.createHash("md5").update(name).digest("hex").slice(0, 6);
+
+  try {
+    const checkURL = await URL.findOne({ urlHash: hash });
+    if (checkURL) {
+      name = `${new Date()}`;
+      hash = crypto.createHash("md5").update(name).digest("hex").slice(0, 6);
+    }
+  } catch (e) {
+    throw e;
+  }
 
   const newUrl = new URL({
     url,
@@ -19,7 +30,7 @@ const createLink = async ({ url }) => {
   try {
     savedUrl = await newUrl.save();
   } catch (e) {
-    console.log(e);
+    throw e;
   }
 
   return {
