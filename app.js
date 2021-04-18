@@ -1,11 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
-const { GraphQLSchema } = require("graphql");
 const schema = require("./src/schemas");
 const resolvers = require("./src/resolvers");
 const dbConnector = require("./utils/db");
-const URL = require("./src/models");
 const urlController = require("./src/urlController");
 
 const app = express();
@@ -21,7 +19,7 @@ app.use(
   })
 );
 
-app.get("/short/:hash", urlController.getLink);
+app.get("/:hash", urlController.getLink);
 
 app.use((req, res) =>
   res.send(

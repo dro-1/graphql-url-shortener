@@ -1,9 +1,9 @@
 const URL = require("./models");
 
-const getLink = async (req, res) => {
+const getLink = async (req, res, next) => {
   const urlHash = req.params.hash;
   if (urlHash.length !== 6 || !urlHash) {
-    return res.status(400).send("Incorrect hash provided");
+    next();
   }
 
   const url = await URL.findOne({ urlHash });

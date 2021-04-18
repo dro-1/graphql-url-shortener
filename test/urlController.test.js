@@ -1,26 +1,26 @@
-const { getLink } = require("./../src/urlController");
-const URL = require("./../src/models");
-
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
 
+const { getLink } = require("../src/urlController");
+
 chai.use(chaiAsPromised);
 
-const expect = chai.expect;
+const { expect } = chai;
 
 describe("URL Controller", () => {
-  it("sends a 400 and no hash response when hash is incorrect", () => {
+  it("goes to 404 handler when hash is incorrect", () => {
     const req = {
       params: {
-        hash: "",
+        hash: "f",
       },
     };
 
     const res = {
       status: (status) => ({
-        send: (message) => {
-          status, message;
-        },
+        send: (message) => ({
+          status,
+          message,
+        }),
       }),
     };
 
@@ -30,7 +30,7 @@ describe("URL Controller", () => {
     });
   });
 
-  it("sends a 404 and a corresponding message if shortUrl has no Url", () => {
+  it("sends a 404 and a corresponding message if hash has no Url", () => {
     const req = {
       params: {
         hash: "dddddd",
@@ -39,9 +39,10 @@ describe("URL Controller", () => {
 
     const res = {
       status: (status) => ({
-        send: (message) => {
-          status, message;
-        },
+        send: (message) => ({
+          status,
+          message,
+        }),
       }),
     };
 
