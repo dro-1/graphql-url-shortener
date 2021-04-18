@@ -23,6 +23,12 @@ app.use(
 
 app.get("/short/:hash", urlController.getLink);
 
+app.use((req, res) =>
+  res.send(
+    "WELCOME :) to my GraphQL Url Shortener. Go to /graphiql to get started"
+  )
+);
+
 dbConnector(() => {
   app.listen(PORT, () => {
     console.log(`Server is running at port ${PORT}`);
