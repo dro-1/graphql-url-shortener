@@ -41,7 +41,7 @@ const shortenURL = async ({ url }) => {
     throw e;
   }
 
-  return `${process.env.HOST}/short/${savedUrl.urlHash}`;
+  return `${process.env.HOST}/${savedUrl.urlHash}`;
 };
 
 module.exports = {
